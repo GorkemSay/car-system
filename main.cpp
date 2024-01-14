@@ -86,7 +86,7 @@ public:
     }
     void Print(){
         Cars::Print();
-        cout << "\nRange: " << Range << " km" << "\nBattery Capacity: " << BatteryCapacity << endl;
+        cout << "Range: " << Range << " km" << "\nBattery Capacity: " << BatteryCapacity << endl;
     }
 };
 
