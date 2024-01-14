@@ -1,5 +1,7 @@
 #include <iostream>
 #include <utility>
+#include <vector>
+#include <map>
 using namespace std;
 enum class gearbox{
     Manual,
@@ -17,6 +19,7 @@ string gearboxToString(gearbox gb){
 }
 class Cars{
 protected:
+    string ChassisNumber;
     string EngineSize;
     string Fuel;
     gearbox GearBox;
@@ -25,8 +28,8 @@ protected:
     int Seat;
 public:
     // Constructor with initialization list
-    Cars(string engine_size, string fuel, gearbox gear_box, string tires, int horse_power, int seat)
-    : EngineSize(std::move(engine_size)), Fuel(std::move(fuel)), GearBox(gear_box), Tires(std::move(tires)), HorsePower(horse_power), Seat(seat){
+    Cars(string chassis_number, string engine_size, string fuel, gearbox gear_box, string tires, int horse_power, int seat)
+    : ChassisNumber(std::move(chassis_number)), EngineSize(std::move(engine_size)), Fuel(std::move(fuel)), GearBox(gear_box), Tires(std::move(tires)), HorsePower(horse_power), Seat(seat){
     }
 
     void setEngineSize(string engine_size){
@@ -71,7 +74,7 @@ public:
         return Seat;
     }
     void Print(){
-        cout << "Engine Size: " << EngineSize << "\nFuel Type: " << Fuel << "\nGearBox Type: " << gearboxToString(GearBox) << "\nTires Size: " << Tires << "\nHorsepower: " << HorsePower << "\nNumber of Seats: " << Seat << endl;
+        cout << "Chassis Number: " << ChassisNumber << "\nEngine Size: " << EngineSize << "\nFuel Type: " << Fuel << "\nGearBox Type: " << static_cast<int>(GearBox) << "\nTires Size: " << Tires << "\nHorsepower: " << HorsePower << "\nNumber of Seats: " << Seat << endl;
     }
 };
 
@@ -79,8 +82,8 @@ class ElectricCars : public Cars{
 public:
     string BatteryCapacity;
     int Range;
-    ElectricCars(string engine_size, string fuel, gearbox gear_box, string tires, int horse_power, int seat, int range, string battery_capacity)
-    : Cars(std::move(engine_size), std::move(fuel), gear_box, std::move(tires), horse_power, seat){
+    ElectricCars(string chassis_number, string engine_size, string fuel, gearbox gear_box, string tires, int horse_power, int seat, int range, string battery_capacity)
+    : Cars(std::move(chassis_number), std::move(engine_size), std::move(fuel), gear_box, std::move(tires), horse_power, seat){
         BatteryCapacity = std::move(battery_capacity);
         Range = range;
     }
@@ -91,7 +94,33 @@ public:
 };
 
 int main() {
-    ElectricCars T10F = ElectricCars("160kW", "Electric", gearbox::Automatic, "21 inch", 217, 4,530 , "88kWh");
-    T10F.Print();
+    map<string, Cars*> carsDatabase;
+    while (true){
+        cout << "\nMenu:\n";
+        cout << "1- Add a new car\n";
+        cout << "2- Show the information about a car\n";
+        cout << "3- Delete a car\n";
+        cout << "4- Exit\n";
+        cout << "Enter your choice (1-4): ";
+
+        int choice;
+        cin >> choice;
+
+        switch (choice) {
+            case 1:{
+                cout << "Enter Chassis Number: ";
+                string chassisNumber;
+                cin >> chassisNumber;
+                if(carsDatabase.find(chassisNumber)) != carsDatabase.end()){
+                    cout << "Car with chassis number " << chassisNumber << " already exists. Enter a different chassis number.\n";
+                    break;
+                }
+
+            }
+            
+        }
+    }
+    //ElectricCars T10F = ElectricCars("160kW", "Electric", gearbox::Automatic, "21 inch", 217, 4,530 , "88kWh");
+    //T10F.Print();
     return 0;
 }
