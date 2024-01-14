@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 using namespace std;
+// Enum for gearbox type.
 enum class gearbox{
     Manual,
     Semi_Automatic,
@@ -77,7 +78,8 @@ public:
         cout << "Chassis Number: " << ChassisNumber << "\nEngine Size: " << EngineSize << "\nFuel Type: " << Fuel << "\nGearBox Type: " << static_cast<int>(GearBox) << "\nTires Size: " << Tires << "\nHorsepower: " << HorsePower << "\nNumber of Seats: " << Seat << endl;
     }
 };
-
+ // Created ElectricCars class for specific electric car features.
+// Inherited from main Cars class.
 class ElectricCars : public Cars{
 public:
     string BatteryCapacity;
@@ -95,6 +97,7 @@ public:
 
 int main() {
     map<string, Cars*> carsDatabase;
+    // Menu for users to choose what he/she want.
     while (true){
         cout << "\nMenu:\n";
         cout << "1- Add a new car\n";
