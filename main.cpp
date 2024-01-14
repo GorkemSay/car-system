@@ -2,10 +2,19 @@
 #include <utility>
 using namespace std;
 enum class gearbox{
-    Manuel,
+    Manual,
     Semi_Automatic,
     Automatic
 };
+// Convert gearbox enum to string
+string gearboxToString(gearbox gb){
+    switch (gb) {
+        case gearbox::Manual: return "Manual";
+        case gearbox::Semi_Automatic: return "Semi-Automatic";
+        case gearbox::Automatic: return "Automatic";
+        default: return "Unknown";
+    }
+}
 class Cars{
 protected:
     string EngineSize;
@@ -61,6 +70,9 @@ public:
     int getSeat(){
         return Seat;
     }
+    void Print(){
+        cout << "Engine Size: " << EngineSize << "\nFuel Type: " << Fuel << "\nGearBox Type: " << gearboxToString(GearBox) << "\nTires Size: " << Tires << "\nHorsepower: " << HorsePower << "\nNumber of Seats: " << Seat << endl;
+    }
 };
 
 class ElectricCars : public Cars{
@@ -73,7 +85,8 @@ public:
         Range = range;
     }
     void Print(){
-        cout << "Engine Size: " << EngineSize << "\nFuel Type: " << Fuel << "\nGearBox Type: " << GearBox << "\nTires Size: " << Tires << "\nHorsepower: " << HorsePower << "\nNumber of Seats: " << Seat << "\nRange: " << Range << "km" << "\nBattery Capacity: " << BatteryCapacity << endl;
+        Cars::Print();
+        cout << "\nRange: " << Range << " km" << "\nBattery Capacity: " << BatteryCapacity << endl;
     }
 };
 
