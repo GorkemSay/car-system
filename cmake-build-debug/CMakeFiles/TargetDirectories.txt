@@ -1,0 +1,3 @@
+/Users/gorkemsay/Desktop/OOP/Cars/cmake-build-debug/CMakeFiles/Cars.dir
+/Users/gorkemsay/Desktop/OOP/Cars/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/gorkemsay/Desktop/OOP/Cars/cmake-build-debug/CMakeFiles/rebuild_cache.dir
